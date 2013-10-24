@@ -1,0 +1,59 @@
+escape ^Tt
+# バーの表示
+caption always "%{= wk} %-w%{= wr}%n %t%{-}%+w"
+# hardstatus alwayslastline "%{= kw} %0m/%0d $USER@$HOST %n-%t"
+#
+# # 警告音のオフ
+vbell off
+#
+# # マルチユーザーモードの切替え
+multiuser on
+#
+# # ハングアップしたときに screen を自動的にデタッチ
+autodetach on
+#
+# # screen 起動時のメッセージを無効化
+startup_message off
+#
+# # ctrl-z + w でリスト表示
+bind w windowlist -b
+bindkey -k kD stuff \177
+#
+# # ctrl-z + U, ctrl-z + E で文字コード設定
+bind 'U' eval "encoding utf8" "stuff 'setenv LC_ALL `locale -a | grep -i jp | grep -i utf`\012'"
+bind 'E' eval "encoding euc"  "stuff 'setenv LC_ALL `locale -a | grep -i jp | grep -i euc`\012'"
+defkanji utf-8
+defencoding utf-8
+encoding utf-8
+#
+# # ctrl-z + '-' + 数字 で 2 桁目のスクリーン画面移動
+bind -c minus 0 select 10
+bind -c minus 1 select 11
+bind -c minus 2 select 12
+bind -c minus 3 select 13
+bind -c minus 4 select 14
+bind -c minus 5 select 15
+bind -c minus 6 select 16
+bind -c minus 7 select 17
+bind -c minus 8 select 18
+bind -c minus 9 select 19
+# スクリーンワイドのサイズを維持
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+# スクリーンバッファの行数を設定
+defscrollback 10000
+#
+# # 分割したスクリーンの大きさ設定
+# bind -c resize j eval 'resize +1' 'command -c resize'
+# bind -c resize k eval 'resize -1' 'command -c resize'
+#
+# # 画面の下に表示するタブの色調整
+sorendition 7 02
+#
+# # ロギング
+log on
+deflog on
+logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
+#
+# # tcsh を実行
+# shell tcsh
+# #setenv TERM xterm
